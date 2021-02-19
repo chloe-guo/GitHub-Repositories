@@ -9,7 +9,7 @@ Vue.use(VueResource)
  
 // import vue-github-api
 import GitHubAPI from 'vue-github-api'
-Vue.use(GitHubAPI, { token: '31f7a1abc5c6c0c5d7be44a5f046a65439200a53' })
+Vue.use(GitHubAPI, { token: '7c71b790be9b29ae2bdfc8cdc9ccd3a12e8e79f7' })
 
 Vue.config.productionTip = false;
 
