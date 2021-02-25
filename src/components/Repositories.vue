@@ -2,25 +2,24 @@
 export default {
   data () {
     return {
-      myGitHubData: {}
+      myGitHubData: {},
+      info: []
     }
   },
-  mounted: function () {
-    this.GitHubAPI.get('/user/repos', {}, [this.myGitHubData, 'repositories'])
-  },
-  computed: {
-    repositoriesCount: function () {
-      if (this.myGitHubData.repositories) {
-        return this.myGitHubData.repositories.length
-      }
-      return 'none yet...'
-    },
-    repositories: function () {
-      if (this.myGitHubData.repositories) {
-        return this.myGitHubData.repositories
-      }
-      return 'none yet...'
+  methods: {
+    getReposInfo() {
+      const axios = require("axios");
+      let githubURL = "https://api.github.com/users/chloe-guo/repos";
+      axios
+        .get(githubURL)
+        .then(response => (this.info = response.data))
+        .catch(function(error) {
+          console.log(error);
+        });
     }
+  },
+  created() {
+    this.getReposInfo();
   }
 }
 </script>
@@ -28,13 +27,13 @@ export default {
 <template>
   <section id="Repositories">
     <h2 class="main-title">GitHub Public Repositories</h2>
-    <p class="number">專案數量：<span>{{ repositoriesCount }}</span></p>
+    <p class="number">專案數量：<span>{{ info.length }}</span></p>
     <ul class="menu">
-      <li class="list" v-for="repository in repositories" :key="repository.name">
-        <!-- title (標題)、description (專案描述)、url (專案網址)，其餘資訊自行決定 -->
-        <h2 class="title">{{ repository.name }}</h2>
-        <p class="description">{{ repository.description }}</p>
-        <p class="link"><span>網站連結：</span><a :href="repository.html_url" target="_blank">{{ repository.html_url }}</a></p>
+      <li class="list" v-for="item in info" :key="item.name">
+        <h2 class="title">{{ item.name }}</h2>
+        <p class="description">{{ item.description }}</p>
+        <p class="link"><span>GitHub 連結：</span><a :href="item.html_url" target="_blank">{{ item.html_url }}</a></p>
+        <p class="link"><span>網站展示連結：</span><a :href="item.homepage" target="_blank">{{ item.homepage }}</a></p>
       </li>
     </ul>
   </section>

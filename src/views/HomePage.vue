@@ -4,7 +4,7 @@ import Repositories from "@/components/Repositories.vue";
 import About from "@/components/About.vue";
 
 export default {
-  name: "Home",
+  name: "HomePage",
   components: {
     Header,
     Repositories,

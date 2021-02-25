@@ -1,5 +1,4 @@
-# GitHub-Repositories
-這是運用 GitHub API ，秀出 GitHub public repo，並且使用 Parallax Scrolling (視差滾動)，和使用vue。
+# repos
 
 ## Project setup
 ```
