@@ -1,4 +1,4 @@
-# repos
+# GitHub-Repositories
 
 ## Project setup
 ```
